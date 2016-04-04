@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app ="news">
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>Blank Cordova Mobile App Project Template (Lite)</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <!-- see http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        /* following two viewport lines are equivalent to the meta viewport statement above, needed for Windows */
+        /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html and http://dev.w3.org/csswg/css-device-adapt/ */
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <script src="cordova.js"></script>          <!-- phantom library, needed for Cordova api calls, added during build -->
+    <script src="js/app.js"></script>           <!-- recommended location of your JavaScript code relative to other JS files -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see README for details -->
+    <link rel="stylesheet" href="css/jquery.toast.css">
+    <link rel="stylesheet" href="css/loading-bar.css">
+    <link rel="stylesheet" href="css/news.css">
+</head>
+
+<body ng-controller="index">
+
+    <div class="text_title">Notícias da sua Posição Atual</div>
+    <p>Atual Localização: {{local}}</p>
+    <button class="btn"ng-click="localizacao()">Notícias da Localização Atual</button>
+    <br>
+    <br>
+    <div class="table" >
+        <table>
+          <tr>
+            <td>Título</td>
+            <td>URL</td>      
+            <td>Data</td>
+            <td>Fonte</td>
+          </tr>
+          <tr  ng-repeat="not in noticias">
+            <td>{{not.title}}</td>
+            <td><a href="{{not.url}}">Ler mais</a></td>        
+            <td>{{not.date}}</td>
+            <td>{{not.source}}</td>
+          </tr>     
+        </table>
+    </div>
+            
+
+<script src="js/angular/angular.min.js"></script>
+<script src="js/controller/controller.js"></script>
+<script src="js/jquery-1.12.2.js"></script>
+<script src="js/jquery.toast.js"></script>
+<script src="js/loading-bar.js"></script>  
+</body>
+</html>
