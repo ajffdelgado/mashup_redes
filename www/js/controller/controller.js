@@ -33,8 +33,19 @@ myApp.controller('index', ['$scope',"$http", function($scope,$http) {
       }
       }).then(function successCallback(response) {
         //console.log("Sem erro: "+response.data);
-        $scope.cidade= response.data.results[0].address_components[3].long_name;
-        $scope.estado = response.data.results[0].address_components[5].long_name;
+        var listaEnderecos = response.data.results[1].address_components;
+        for (var i = 0; listaEnderecos.length > i; i++) {
+          if(listaEnderecos[i].types[0] == "administrative_area_level_2"){
+            $scope.cidade = listaEnderecos[i].long_name;
+          }
+
+          if(listaEnderecos[i].types[0] == "administrative_area_level_1"){
+            $scope.estado = listaEnderecos[i].long_name;
+          }
+          
+        };
+        //$scope.cidade= response.data.results[0].address_components[3].long_name;
+        //$scope.estado = response.data.results[0].address_components[5].long_name;
         $scope.local = $scope.cidade+", "+$scope.estado;
         getNoticias($scope.cidade,$scope.estado);
         //$scope.noticias=getNoticias($scope.cidade,$scope.estado);
