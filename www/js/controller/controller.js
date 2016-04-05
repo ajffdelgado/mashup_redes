@@ -7,6 +7,7 @@ myApp.controller('index', ['$scope',"$http", function($scope,$http) {
   $scope.local = null;
   $scope.noticias=[];
   $scope.localizacao = function(){
+    $.toast('Buscando coordenadas atuais.', {sticky: false, type: 'info'}); 
   	var geolocation = navigator.geolocation;
   	//console.log(geolocation)
   	geolocation.getCurrentPosition(sucesso, erro);
@@ -44,14 +45,9 @@ myApp.controller('index', ['$scope',"$http", function($scope,$http) {
           }
           
         };
-        //$scope.cidade= response.data.results[0].address_components[3].long_name;
-        //$scope.estado = response.data.results[0].address_components[5].long_name;
         $scope.local = $scope.cidade+", "+$scope.estado;
         getNoticias($scope.cidade,$scope.estado);
-        //$scope.noticias=getNoticias($scope.cidade,$scope.estado);
-        //alert("Cidade: "+$scope.cidade)
-              
-              
+         
       }, function errorCallback(response) {
           $.toast('Erro ao identificar localização atual.', {sticky: true, type: 'danger'});                
       });
